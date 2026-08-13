@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>খুতবাতুল হাজাহ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Amiri+Quran&family=Noto+Serif+Bengali:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600&family=Marcellus&display=swap" rel="stylesheet">
+<style>
+:root{
+  --lapis:#12325C;
+  --lapis-deep:#0B2144;
+  --gold:#A8842C;
+  --gold-pale:#EFE2BE;
+  --paper:#FDFBF6;
+  --panel:#F6F1E4;
+  --charcoal:#2C2A26;
+  --muted:#6E675B;
+  --rule:rgba(168,132,44,.32);
+  --ar:'Amiri','Scheherazade New','Traditional Arabic',serif;
+  --arq:'Amiri Quran','Amiri','Scheherazade New',serif;
+  --bn:'Noto Serif Bengali','SolaimanLipi','Kalpurush','Nirmala UI',serif;
+  --bnu:'Hind Siliguri','Noto Serif Bengali','Nirmala UI',sans-serif;
+  --lat:'Marcellus',Georgia,serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+
+/* ── background: interlocking-circle lattice ── */
+body{
+  margin:0; background:var(--paper); color:var(--charcoal);
+  font-family:var(--bn); line-height:1.85;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'><g fill='none' stroke='%23A8842C' stroke-opacity='0.07' stroke-width='1'><circle cx='0' cy='0' r='36'/><circle cx='72' cy='0' r='36'/><circle cx='0' cy='72' r='36'/><circle cx='72' cy='72' r='36'/><circle cx='36' cy='36' r='36'/></g></svg>");
+  background-size:72px 72px;
+}
+.wrap{max-width:1240px; margin:0 auto; padding:0 1.25rem 4.5rem}
+
+/* ── header ── */
+header.unwan{text-align:center; margin:3rem auto 0; max-width:960px}
+header.unwan svg{width:100%; height:auto; display:block}
+.title-bn{
+  font-weight:700; font-size:clamp(1.7rem,4.8vw,2.4rem); line-height:1.3;
+  color:var(--lapis-deep); margin:1.2rem 0 .25rem;
+}
+.title-lat{
+  font-family:var(--lat); font-size:.78rem; letter-spacing:.32em;
+  text-transform:uppercase; color:var(--muted); margin:0;
+}
+.orn{display:flex; align-items:center; justify-content:center; gap:.8rem; margin:1.8rem 0 2.6rem}
+.orn span{height:1px; width:min(140px,25vw); background:linear-gradient(90deg,transparent,var(--gold))}
+.orn span:last-child{background:linear-gradient(90deg,var(--gold),transparent)}
+.orn svg{width:22px; height:22px; flex:none}
+
+/* ── passage + side reference ── */
+.leaf{max-width:1160px; margin:0 auto 2.1rem}
+.card{
+  background:#fff; border:1px solid var(--rule); border-radius:3px;
+  box-shadow:0 12px 34px -20px rgba(18,50,92,.3);
+  padding:2.4rem clamp(1.2rem,4vw,3.4rem) 2.2rem; position:relative;
+}
+.card::before{
+  content:""; position:absolute; inset:7px;
+  border:1px solid rgba(168,132,44,.16); border-radius:2px; pointer-events:none;
+}
+
+.eyebrow{display:flex; align-items:center; gap:.7rem; justify-content:center; margin:0 0 1.3rem}
+.eyebrow .num{
+  font-family:var(--ar); font-size:1rem; color:var(--gold);
+  width:2.15rem; height:2.15rem; flex:none;
+  display:grid; place-items:center; background:var(--gold-pale);
+  clip-path:polygon(50% 0%, 93.3% 25%, 93.3% 75%, 50% 100%, 6.7% 75%, 6.7% 25%);
+}
+.eyebrow h2{margin:0; font-size:clamp(1.12rem,2.9vw,1.4rem); font-weight:600; color:var(--lapis-deep)}
+.eyebrow .src{
+  display:block; font-family:var(--lat); font-size:.78rem;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--muted);
+}
+
+.ar{
+  direction:rtl; text-align:center; font-family:var(--ar);
+  font-size:clamp(1.85rem,5vw,2.55rem); line-height:2.1;
+  color:var(--lapis); margin:.4rem 0 1.2rem; word-spacing:.06em;
+}
+.ar.quran{font-family:var(--arq); line-height:2.3; color:var(--lapis-deep)}
+.ayah{display:inline-block; vertical-align:middle; margin:0 .18em}
+.ayah svg{width:1.55em; height:1.55em; overflow:visible}
+.ayah text{font-family:var(--ar); font-size:15px; fill:var(--gold)}
+
+.translit{
+  text-align:center; font-family:var(--lat);
+  font-size:1.08rem; letter-spacing:.015em; line-height:1.95; color:var(--muted);
+  border-top:1px solid var(--rule); border-bottom:1px solid var(--rule);
+  padding:.85rem .4rem; margin:0 0 1.25rem;
+}
+.bn-label{
+  display:block; text-align:center; font-family:var(--lat);
+  font-size:.74rem; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--gold); margin:0 0 .8rem;
+}
+.bn{font-size:1.24rem; line-height:2.05; text-align:center; margin:0 auto; max-width:80ch}
+
+.ref{
+  margin:1.6rem auto 0; padding-top:1.1rem; text-align:center;
+  border-top:1px solid var(--rule);
+  font-family:var(--bnu); font-size:.93rem; line-height:1.75; color:var(--muted);
+}
+.ref ul{
+  margin:0; padding:0; list-style:none;
+  display:flex; flex-wrap:wrap; justify-content:center; gap:.2rem .95rem;
+}
+.ref li{position:relative}
+.ref li + li::before{
+  content:"\00B7"; color:var(--gold); position:absolute;
+  left:-.55rem; top:0;
+}
+.ref b{color:var(--lapis); font-weight:600}
+
+.reveal{opacity:0; transform:translateY(10px); animation:rise .7s cubic-bezier(.22,.7,.3,1) forwards}
+@keyframes rise{to{opacity:1; transform:none}}
+@media(prefers-reduced-motion:reduce){.reveal{animation:none; opacity:1; transform:none}}
+
+@media print{
+  body{background:#fff; background-image:none}
+  .card{box-shadow:none; break-inside:avoid; page-break-inside:avoid}
+  .reveal{animation:none; opacity:1; transform:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ══ HEADER — muqarnas niche ══ -->
+  <header class="unwan reveal">
+    <svg viewBox="0 0 820 250" role="img" aria-label="খুতবাতুল হাজাহ">
+      <defs>
+        <linearGradient id="plinthL" x1="0" x2="1">
+          <stop offset="0" stop-color="#A8842C" stop-opacity="0"/>
+          <stop offset="1" stop-color="#A8842C" stop-opacity=".5"/>
+        </linearGradient>
+        <linearGradient id="plinthR" x1="1" x2="0">
+          <stop offset="0" stop-color="#A8842C" stop-opacity="0"/>
+          <stop offset="1" stop-color="#A8842C" stop-opacity=".5"/>
+        </linearGradient>
+      </defs>
+
+      <!-- niche field -->
+      <path d="M285 214 V141 Q288 81 410 45 Q532 81 535 141 V214 Z" fill="#FFFDF8"/>
+
+      <!-- outer and inner arch -->
+      <path d="M276 214 V138 Q279 71 410 32 Q541 71 544 138 V214"
+            fill="none" stroke="#A8842C" stroke-width="1.5" stroke-opacity=".8"/>
+      <path d="M285 214 V141 Q288 81 410 45 Q532 81 535 141 V214"
+            fill="none" stroke="#A8842C" stroke-width="0.9" stroke-opacity=".38"/>
+
+      <!-- muqarnas tiers -->
+      <g fill="none" stroke="#A8842C" stroke-width="1" stroke-opacity=".55">
+        <path d="M365 93 Q380 72 395 93 Q410 72 425 93 Q440 72 455 93"/>
+        <path d="M336 128 Q351 106 366 128 Q381 106 396 128 Q411 106 426 128 Q441 106 456 128 Q471 106 486 128"/>
+        <path d="M357 93 H463" stroke-opacity=".22"/>
+        <path d="M330 128 H492" stroke-opacity=".22"/>
+      </g>
+
+      <!-- keystone drop -->
+      <g fill="none" stroke="#A8842C" stroke-width="1" stroke-opacity=".6">
+        <path d="M410 45 V62"/>
+        <circle cx="410" cy="68" r="6"/>
+      </g>
+
+      <!-- plinth -->
+      <g stroke="#A8842C" fill="none">
+        <path d="M240 214 H580" stroke-width="1.5" stroke-opacity=".8"/>
+        <path d="M258 221 H562" stroke-width="0.9" stroke-opacity=".4"/>
+      </g>
+      <rect x="40" y="213.4" width="200" height="1.2" fill="url(#plinthL)"/>
+      <rect x="580" y="213.4" width="200" height="1.2" fill="url(#plinthR)"/>
+
+      <text x="410" y="181" text-anchor="middle"
+            font-family="Amiri, 'Scheherazade New', serif" font-size="42" fill="#0B2144"
+            direction="rtl">خُطْبَةُ الْحَاجَةِ</text>
+    </svg>
+
+    <h1 class="title-bn">খুতবাতুল হাজাহ</h1>
+    <p class="title-lat">Khu&#7789;batul&nbsp;&#7716;&#257;jah</p>
+  </header>
+
+  <div class="orn reveal" style="animation-delay:.08s">
+    <span></span>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="#A8842C" stroke-width="1"><path d="M12 3 C15 3 17 5 17 8 C20 8 22 10 22 13 C22 16 20 18 17 18 C17 21 15 22 12 22 C9 22 7 21 7 18 C4 18 2 16 2 13 C2 10 4 8 7 8 C7 5 9 3 12 3 Z"/><circle cx="12" cy="12.5" r="3.4"/></g></svg>
+    <span></span>
+  </div>
+
+  <!-- ══ 1 ══ -->
+  <div class="leaf reveal" style="animation-delay:.14s">
+    <article class="card">
+      <div class="eyebrow"><span class="num">١</span><h2>হামদ ও শাহাদাহ</h2></div>
+
+      <p class="ar">إِنَّ الْحَمْدَ لِلَّهِ نَحْمَدُهُ وَنَسْتَعِينُهُ وَنَسْتَغْفِرُهُ، وَنَعُوذُ بِاللَّهِ مِنْ شُرُورِ أَنْفُسِنَا وَمِنْ سَيِّئَاتِ أَعْمَالِنَا، مَنْ يَهْدِهِ اللَّهُ فَلَا مُضِلَّ لَهُ، وَمَنْ يُضْلِلْ فَلَا هَادِيَ لَهُ، وَأَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ.</p>
+
+      <p class="translit">Innal-ḥamda lillāhi naḥmaduhū wa nastaʿīnuhū wa nastaghfiruh, wa naʿūdhu billāhi min shurūri anfusinā wa min sayyi’āti aʿmālinā, man yahdihillāhu falā muḍilla lah, wa man yuḍlil falā hādiya lah, wa ash-hadu an lā ilāha illallāhu waḥdahū lā sharīka lah, wa ash-hadu anna Muḥammadan ʿabduhū wa rasūluh.</p>
+
+      <span class="bn-label">অর্থ</span>
+      <p class="bn">নিশ্চয়ই সমস্ত প্রশংসা আল্লাহর জন্য। আমরা তাঁরই প্রশংসা করি, তাঁরই সাহায্য চাই এবং তাঁরই কাছে ক্ষমা প্রার্থনা করি। আমরা আল্লাহর আশ্রয় চাই আমাদের নিজেদের নফসের অনিষ্ট থেকে এবং আমাদের মন্দ আমলসমূহ থেকে। আল্লাহ যাকে হিদায়াত দেন, তাকে কেউ পথভ্রষ্ট করতে পারে না; আর তিনি যাকে পথভ্রষ্ট করেন, তাকে কেউ হিদায়াত দিতে পারে না। আমি সাক্ষ্য দিচ্ছি যে, আল্লাহ ছাড়া কোনো সত্য উপাস্য নেই — তিনি একক, তাঁর কোনো শরিক নেই। আর আমি সাক্ষ্য দিচ্ছি যে, মুহাম্মাদ ﷺ তাঁর বান্দা ও রাসূল।</p>
+
+      <aside class="ref">
+      <ul>
+        <li>রাবি: <b>আবদুল্লাহ ইবনু মাসঊদ (রা.)</b></li>
+        <li>আবূ দাউদ <b>২১১৮</b>, <b>১০৯৭</b></li>
+        <li>তিরমিযী <b>১১০৫</b> — হাসান</li>
+        <li>নাসাঈ <b>১৪০৪</b>, <b>৩২৭৭</b></li>
+        <li>ইবনু মাজাহ <b>১৮৯২</b></li>
+        <li>আহমাদ <b>১/৩৯২–৩৯৩</b></li>
+        <li>হাকিম <b>২/১৮২–১৮৩</b> — সহীহ</li>
+      </ul>
+      </aside>
+    </article>
+  </div>
+
+  <!-- ══ 2 ══ -->
+  <div class="leaf reveal" style="animation-delay:.18s">
+    <article class="card">
+      <div class="eyebrow"><span class="num">٢</span><div><h2>সূরা আলে-ইমরান</h2><span class="src">Āl ʿImrān 3 : 102</span></div></div>
+
+      <p class="ar quran">يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱتَّقُوا۟ ٱللَّهَ حَقَّ تُقَاتِهِۦ وَلَا تَمُوتُنَّ إِلَّا وَأَنتُم مُّسْلِمُونَ<span class="ayah"><svg viewBox="0 0 34 34" aria-hidden="true"><g fill="none" stroke="#A8842C" stroke-width="1"><polygon points="17,2 30,9.5 30,24.5 17,32 4,24.5 4,9.5"/><circle cx="17" cy="17" r="10.5" stroke-opacity=".5"/></g><text x="17" y="22" text-anchor="middle">١٠٢</text></svg></span></p>
+
+      <p class="translit">Yā ayyuhal-ladhīna āmanut-taqullāha ḥaqqa tuqātihī wa lā tamūtunna illā wa antum muslimūn.</p>
+
+      <span class="bn-label">অর্থ</span>
+      <p class="bn">হে ঈমানদারগণ! তোমরা আল্লাহকে যথাযথভাবে ভয় করো, এবং মুসলিম না হয়ে কখনোই মৃত্যুবরণ করো না।</p>
+
+      <aside class="ref">
+      <ul>
+        <li>সূরা <b>আলে-ইমরান</b> (৩)</li>
+        <li>আয়াত <b>১০২</b>, পারা ৪</li>
+        <li>খুতবার প্রথম আয়াত</li>
+      </ul>
+      </aside>
+    </article>
+  </div>
+
+  <!-- ══ 3 ══ -->
+  <div class="leaf reveal" style="animation-delay:.22s">
+    <article class="card">
+      <div class="eyebrow"><span class="num">٣</span><div><h2>সূরা আন-নিসা</h2><span class="src">An-Nisā’ 4 : 1</span></div></div>
+
+      <p class="ar quran">يَـٰٓأَيُّهَا ٱلنَّاسُ ٱتَّقُوا۟ رَبَّكُمُ ٱلَّذِى خَلَقَكُم مِّن نَّفْسٍ وَٰحِدَةٍ وَخَلَقَ مِنْهَا زَوْجَهَا وَبَثَّ مِنْهُمَا رِجَالًا كَثِيرًا وَنِسَآءً ۚ وَٱتَّقُوا۟ ٱللَّهَ ٱلَّذِى تَسَآءَلُونَ بِهِۦ وَٱلْأَرْحَامَ ۚ إِنَّ ٱللَّهَ كَانَ عَلَيْكُمْ رَقِيبًا<span class="ayah"><svg viewBox="0 0 34 34" aria-hidden="true"><g fill="none" stroke="#A8842C" stroke-width="1"><polygon points="17,2 30,9.5 30,24.5 17,32 4,24.5 4,9.5"/><circle cx="17" cy="17" r="10.5" stroke-opacity=".5"/></g><text x="17" y="22" text-anchor="middle">١</text></svg></span></p>
+
+      <p class="translit">Yā ayyuhan-nāsut-taqū rabbakumul-ladhī khalaqakum min nafsin wāḥidatin wa khalaqa minhā zawjahā wa baththa minhumā rijālan kathīran wa nisā’ā, wat-taqullāhal-ladhī tasā’alūna bihī wal-arḥām, innallāha kāna ʿalaykum raqībā.</p>
+
+      <span class="bn-label">অর্থ</span>
+      <p class="bn">হে মানবজাতি! তোমরা তোমাদের রবকে ভয় করো, যিনি তোমাদেরকে এক ব্যক্তি থেকে সৃষ্টি করেছেন এবং তার থেকেই সৃষ্টি করেছেন তার সঙ্গিনীকে; আর তাদের দুজন থেকে ছড়িয়ে দিয়েছেন বহু নর-নারী। আর আল্লাহকে ভয় করো, যাঁর নামে তোমরা একে অপরের কাছে চাওয়া-পাওয়া করো, এবং আত্মীয়তার সম্পর্কের ব্যাপারেও সতর্ক থাকো। নিশ্চয়ই আল্লাহ তোমাদের ওপর পূর্ণ পর্যবেক্ষণকারী।</p>
+
+      <aside class="ref">
+      <ul>
+        <li>সূরা <b>আন-নিসা</b> (৪)</li>
+        <li>আয়াত <b>১</b>, পারা ৪</li>
+        <li>খুতবার দ্বিতীয় আয়াত</li>
+      </ul>
+      </aside>
+    </article>
+  </div>
+
+  <!-- ══ 4 ══ -->
+  <div class="leaf reveal" style="animation-delay:.26s">
+    <article class="card">
+      <div class="eyebrow"><span class="num">٤</span><div><h2>সূরা আল-আহযাব</h2><span class="src">Al-Aḥzāb 33 : 70–71</span></div></div>
+
+      <p class="ar quran">يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱتَّقُوا۟ ٱللَّهَ وَقُولُوا۟ قَوْلًا سَدِيدًا<span class="ayah"><svg viewBox="0 0 34 34" aria-hidden="true"><g fill="none" stroke="#A8842C" stroke-width="1"><polygon points="17,2 30,9.5 30,24.5 17,32 4,24.5 4,9.5"/><circle cx="17" cy="17" r="10.5" stroke-opacity=".5"/></g><text x="17" y="22" text-anchor="middle">٧٠</text></svg></span> يُصْلِحْ لَكُمْ أَعْمَـٰلَكُمْ وَيَغْفِرْ لَكُمْ ذُنُوبَكُمْ ۗ وَمَن يُطِعِ ٱللَّهَ وَرَسُولَهُۥ فَقَدْ فَازَ فَوْزًا عَظِيمًا<span class="ayah"><svg viewBox="0 0 34 34" aria-hidden="true"><g fill="none" stroke="#A8842C" stroke-width="1"><polygon points="17,2 30,9.5 30,24.5 17,32 4,24.5 4,9.5"/><circle cx="17" cy="17" r="10.5" stroke-opacity=".5"/></g><text x="17" y="22" text-anchor="middle">٧١</text></svg></span></p>
+
+      <p class="translit">Yā ayyuhal-ladhīna āmanut-taqullāha wa qūlū qawlan sadīdā · Yuṣliḥ lakum aʿmālakum wa yaghfir lakum dhunūbakum, wa man yuṭiʿillāha wa rasūlahū faqad fāza fawzan ʿaẓīmā.</p>
+
+      <span class="bn-label">অর্থ</span>
+      <p class="bn">হে ঈমানদারগণ! তোমরা আল্লাহকে ভয় করো এবং সঠিক কথা বলো। তিনি তোমাদের আমলসমূহ সংশোধন করে দেবেন এবং তোমাদের পাপসমূহ ক্ষমা করে দেবেন। আর যে কেউ আল্লাহ ও তাঁর রাসূলের আনুগত্য করে, সে অবশ্যই মহাসাফল্য অর্জন করল।</p>
+
+      <aside class="ref">
+      <ul>
+        <li>সূরা <b>আল-আহযাব</b> (৩৩)</li>
+        <li>আয়াত <b>৭০–৭১</b>, পারা ২২</li>
+        <li>খুতবার তৃতীয় আয়াত</li>
+      </ul>
+      </aside>
+    </article>
+  </div>
+
+  <!-- ══ 5 ══ -->
+  <div class="leaf reveal" style="animation-delay:.3s">
+    <article class="card">
+      <div class="eyebrow"><span class="num">٥</span><div><h2>আম্মা বা‘দ</h2><span class="src">Ammā baʿd</span></div></div>
+
+      <p class="ar">أَمَّا بَعْدُ، فَإِنَّ خَيْرَ الْحَدِيثِ كِتَابُ اللَّهِ، وَخَيْرَ الْهَدْيِ هَدْيُ مُحَمَّدٍ ﷺ، وَشَرَّ الْأُمُورِ مُحْدَثَاتُهَا، وَكُلَّ مُحْدَثَةٍ بِدْعَةٌ، وَكُلَّ بِدْعَةٍ ضَلَالَةٌ، وَكُلَّ ضَلَالَةٍ فِي النَّارِ.</p>
+
+      <p class="translit">Ammā baʿd, fa-inna khayral-ḥadīthi kitābullāh, wa khayral-hadyi hadyu Muḥammadin ﷺ, wa sharral-umūri muḥdathātuhā, wa kulla muḥdathatin bidʿah, wa kulla bidʿatin ḍalālah, wa kulla ḍalālatin fin-nār.</p>
+
+      <span class="bn-label">অর্থ</span>
+      <p class="bn">অতঃপর — নিশ্চয়ই সর্বোত্তম বাণী আল্লাহর কিতাব, সর্বোত্তম পথনির্দেশ মুহাম্মাদ ﷺ-এর পথনির্দেশ, আর সবচেয়ে নিকৃষ্ট বিষয় হলো দ্বীনের মধ্যে নবউদ্ভাবিত বিষয়সমূহ। প্রত্যেক নবউদ্ভাবিত বিষয়ই বিদআহ, প্রত্যেক বিদআহই পথভ্রষ্টতা, এবং প্রত্যেক পথভ্রষ্টতার পরিণতি জাহান্নাম।</p>
+
+      <aside class="ref">
+      <ul>
+        <li>রাবি: <b>জাবির ইবনু আবদিল্লাহ (রা.)</b></li>
+        <li>সহীহ মুসলিম <b>৮৬৭</b></li>
+        <li>নাসাঈ <b>১৫৭৮</b></li>
+        <li>ইবনু মাজাহ <b>৪৫</b> — মুকাদ্দিমা</li>
+      </ul>
+      </aside>
+    </article>
+  </div>
+
+</div>
+</body>
+</html>
