@@ -8,7 +8,7 @@
     <title>Forty Hadith | الأربعون النووية</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=DM+Sans:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
     <style>
       :root { --ink:#19332f; --evergreen:#123b35; --moss:#1e5047; --gold:#c79548; --sand:#f8f2e8; --cream:#fffcf6; --muted:#61716c; --line:rgba(25,51,47,.14); }
       * { box-sizing:border-box; }
@@ -42,7 +42,10 @@
       .section-note { max-width:310px; margin:0; color:var(--muted); font-size:.96rem; }
       .resource-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
       .collection-section { margin-top:64px; }
-      .hadith-grid { grid-template-columns:minmax(0,1fr); }
+      .hadith-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+      .bangla { margin:0 0 10px; color:var(--moss); font-family:"Noto Serif Bengali","DM Sans",Arial,sans-serif; font-size:1rem; font-weight:600; line-height:1.5; }
+      .resource .meta { margin-bottom:46px; color:var(--muted); font-size:.82rem; line-height:1.5; }
+      .resource .meta strong { display:block; color:var(--ink); font-weight:600; }
       .resource { position:relative; min-height:265px; padding:29px 30px; border:1px solid var(--line); background:#fffdf9; transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease; }
       .resource:hover { border-color:rgba(199,149,72,.72); box-shadow:0 14px 32px rgba(25,51,47,.09); transform:translateY(-3px); }
       .resource.primary { border:0; background:var(--sand); }
@@ -54,21 +57,42 @@
       .card-head { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:31px; }
       .card-head .card-number { margin-bottom:0; }
       .pdf-tag { display:inline-flex; align-items:center; gap:6px; padding:4px 9px; border:1px solid rgba(199,149,72,.5); border-radius:999px; color:#a7752e; font-size:.68rem; font-weight:700; letter-spacing:.11em; text-transform:uppercase; }
+      .resource.card { display:block; }
+      .resource.card .stretch { position:absolute; inset:0; z-index:0; }
+      .resource.card .card-link { z-index:1; }
+      .watch-row { position:relative; z-index:1; display:flex; flex-wrap:wrap; gap:8px; margin:0 0 50px; }
+      .watch-link { display:inline-flex; align-items:center; gap:6px; padding:5px 10px; border:1px solid var(--line); border-radius:999px; background:#fff; color:var(--moss); font-size:.76rem; font-weight:700; transition:border-color .2s ease,background .2s ease; }
+      .watch-link:hover { border-color:rgba(199,149,72,.72); background:var(--sand); }
+      .watch-link .play { display:inline-block; width:0; height:0; border-style:solid; border-width:5px 0 5px 8px; border-color:transparent transparent transparent currentColor; }
+      .resource .meta.has-video { margin-bottom:14px; }
+      .video-section { margin-top:64px; }
+      .video-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+      .video { position:relative; display:block; overflow:hidden; border:1px solid var(--line); background:#fffdf9; transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease; }
+      .video:hover { border-color:rgba(199,149,72,.72); box-shadow:0 14px 32px rgba(25,51,47,.09); transform:translateY(-3px); }
+      .thumb { position:relative; display:block; aspect-ratio:16/9; overflow:hidden; background:#0e302b; }
+      .thumb img { display:block; width:100%; height:100%; object-fit:cover; transition:transform .3s ease; } .video:hover .thumb img { transform:scale(1.04); }
+      .thumb::after { position:absolute; top:50%; left:50%; width:54px; height:54px; border-radius:50%; background:rgba(14,48,43,.82); box-shadow:0 0 0 1px rgba(244,212,149,.6); content:""; transform:translate(-50%,-50%); }
+      .thumb::before { position:absolute; z-index:1; top:50%; left:50%; width:0; height:0; border-style:solid; border-width:9px 0 9px 15px; border-color:transparent transparent transparent #f4d495; content:""; transform:translate(-40%,-50%); }
+      .video-body { display:block; padding:18px 20px 20px; }
+      .video-kicker { display:flex; justify-content:space-between; gap:10px; margin-bottom:8px; color:var(--gold); font-family:"Playfair Display",Georgia,serif; font-size:1rem; font-weight:700; }
+      .video-date { color:var(--muted); font-family:"DM Sans",Arial,sans-serif; font-size:.78rem; font-weight:500; }
+      .video h3 { margin:0; font-family:"Playfair Display",Georgia,serif; font-size:1.2rem; letter-spacing:-.02em; line-height:1.2; }
+      .button.secondary { border-color:rgba(25,51,47,.35); background:transparent; color:var(--evergreen); } .button.secondary:hover { background:var(--sand); }
       .reflection { margin:0 0 65px; padding:30px 37px 27px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); text-align:center; }
       .arabic { margin:0 0 9px; color:var(--moss); direction:rtl; font-family:Amiri,serif; font-size:2rem; line-height:1.1; }
       .reflection p:last-child { margin:0; color:var(--muted); font-size:.94rem; }
       .ornament { margin-top:15px; color:var(--gold); font-family:Amiri,serif; font-size:2.6rem; line-height:1; }
       footer { padding:26px 0 30px; background:#0e302b; color:rgba(255,253,248,.7); font-size:.82rem; }
       .footer-content { display:flex; align-items:center; justify-content:space-between; gap:20px; } footer a { color:#f4d495; } footer a:hover { text-decoration:underline; }
-      @media (max-width:850px) { .resource-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .hadith-grid { grid-template-columns:minmax(0,1fr); } }
-      @media (max-width:680px) { .container { width:min(100% - 32px,1120px); } .nav { padding:18px 0; } .hero { padding:57px 0 74px; } main { padding:56px 0 61px; } .section-top { display:block; } .section-note { margin-top:14px; } .resource-grid { grid-template-columns:1fr; } .resource { min-height:225px; } .reflection { padding:29px 25px; } .footer-content { align-items:flex-start; flex-direction:column; gap:6px; } }
+      @media (max-width:850px) { .resource-grid,.hadith-grid,.video-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+      @media (max-width:680px) { .container { width:min(100% - 32px,1120px); } .nav { padding:18px 0; } .hero { padding:57px 0 74px; } main { padding:56px 0 61px; } .section-top { display:block; } .section-note { margin-top:14px; } .resource-grid,.hadith-grid,.video-grid { grid-template-columns:1fr; } .resource { min-height:225px; } .reflection { padding:29px 25px; } .footer-content { align-items:flex-start; flex-direction:column; gap:6px; } }
     </style>
   </head>
   <body>
     <header class="site-header">
       <nav class="container nav" aria-label="Main navigation">
         <a class="brand" href="index.html" aria-label="Forty Hadith home"><span class="brand-mark" lang="ar">٤٠</span> FORTY HADITH</a>
-        <a class="nav-link" href="#resources">Explore</a>
+        <span style="display:flex;gap:22px"><a class="nav-link" href="#resources">Explore</a><a class="nav-link" href="#videos">Videos</a></span>
       </nav>
       <section class="container hero">
         <div class="hero-content">
@@ -76,7 +100,7 @@
           <h1>The Forty Hadith</h1>
           <p class="arabic-title" lang="ar">الأربعون النووية</p>
           <p class="intro">A calm place to read, revisit, and reflect on the selected teachings collected by Imam an-Nawawi.</p>
-          <a class="button" href="pdf/hadith-01.pdf" target="_blank" rel="noopener noreferrer">Begin reading (PDF) <span aria-hidden="true">→</span></a>
+          <a class="button" href="pdf/hadith01.pdf" target="_blank" rel="noopener noreferrer">Begin reading (PDF) <span aria-hidden="true">→</span></a>
         </div>
       </section>
     </header>
@@ -118,18 +142,127 @@
           <p class="section-label">The collection</p>
           <h2>Hadith Collections</h2>
         </div>
-        <p class="section-note">Each hadith is a PDF that opens in a new tab. Hadith #1 is available now. In Shaa Allah, 41 more hadith will be added here in the future.</p>
+        <p class="section-note">Each hadith is a PDF that opens in a new tab. The first six are available now, and In Shaa Allah the rest will follow.</p>
       </div>
 
       <section class="resource-grid hadith-grid" aria-label="Hadith collections">
-        <a class="resource primary" href="pdf/hadith-01.pdf" target="_blank" rel="noopener noreferrer">
+        <article class="resource primary card">
           <span class="card-head">
             <span class="card-number">01 of 42</span>
             <span class="pdf-tag">PDF</span>
           </span>
-          <h3>Hadith #1</h3>
-          <p>Begin the collection with the first Hadith and its presented text.</p>
-          <span class="card-link">Open PDF <span class="arrow" aria-hidden="true">→</span></span>
+          <h3>Intention Comes First</h3>
+          <p class="bangla" lang="bn">নিয়ত সবার আগে</p>
+          <p class="meta has-video"><strong>Umar ibn al-Khattab</strong>Bukhari 1 · Muslim 1907</p>
+          <span class="watch-row" aria-label="Video lectures"><a class="watch-link" href="https://youtu.be/uVguZa2DJh4" target="_blank" rel="noopener noreferrer"><span class="play" aria-hidden="true"></span>Class #2</a></span>
+          <a class="stretch" href="pdf/hadith01.pdf" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"></a>
+          <a class="card-link" href="pdf/hadith01.pdf" target="_blank" rel="noopener noreferrer">Open PDF <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        </article>
+        <article class="resource card">
+          <span class="card-head">
+            <span class="card-number">02 of 42</span>
+            <span class="pdf-tag">PDF</span>
+          </span>
+          <h3>Iman, Islam &amp; Ihsan</h3>
+          <p class="bangla" lang="bn">ঈমান, ইসলাম ও ইহসানের পরিচয়</p>
+          <p class="meta has-video"><strong>Umar ibn al-Khattab</strong>Muslim 8 · Abu Dawud 4695</p>
+          <span class="watch-row" aria-label="Video lectures"><a class="watch-link" href="https://youtu.be/LICPaVNDv0k" target="_blank" rel="noopener noreferrer"><span class="play" aria-hidden="true"></span>Class #3</a><a class="watch-link" href="https://youtu.be/I9p_6pUGdNs" target="_blank" rel="noopener noreferrer"><span class="play" aria-hidden="true"></span>Class #4</a></span>
+          <a class="stretch" href="pdf/hadith02.pdf" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"></a>
+          <a class="card-link" href="pdf/hadith02.pdf" target="_blank" rel="noopener noreferrer">Open PDF <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        </article>
+        <article class="resource card">
+          <span class="card-head">
+            <span class="card-number">03 of 42</span>
+            <span class="pdf-tag">PDF</span>
+          </span>
+          <h3>The Pillars of Islam</h3>
+          <p class="bangla" lang="bn">ইসলামের মূলনীতিসমূহ</p>
+          <p class="meta has-video"><strong>Abdullah ibn Umar</strong>Bukhari 8 · Muslim 16</p>
+          <span class="watch-row" aria-label="Video lectures"><a class="watch-link" href="https://youtu.be/u_FapXOWq8I" target="_blank" rel="noopener noreferrer"><span class="play" aria-hidden="true"></span>Class #5</a></span>
+          <a class="stretch" href="pdf/hadith03.pdf" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"></a>
+          <a class="card-link" href="pdf/hadith03.pdf" target="_blank" rel="noopener noreferrer">Open PDF <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        </article>
+        <article class="resource card">
+          <span class="card-head">
+            <span class="card-number">04 of 42</span>
+            <span class="pdf-tag">PDF</span>
+          </span>
+          <h3>Creation &amp; Destiny</h3>
+          <p class="bangla" lang="bn">ভ্রূণতত্ত্ব ও তাকদির</p>
+          <p class="meta has-video"><strong>Abdullah ibn Mas&rsquo;ud</strong>Bukhari 3208 · Muslim 2643</p>
+          <span class="watch-row" aria-label="Video lectures"><a class="watch-link" href="https://youtu.be/u_FapXOWq8I" target="_blank" rel="noopener noreferrer"><span class="play" aria-hidden="true"></span>Class #5</a></span>
+          <a class="stretch" href="pdf/hadith04.pdf" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"></a>
+          <a class="card-link" href="pdf/hadith04.pdf" target="_blank" rel="noopener noreferrer">Open PDF <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        </article>
+        <article class="resource card">
+          <span class="card-head">
+            <span class="card-number">05 of 42</span>
+            <span class="pdf-tag">PDF</span>
+          </span>
+          <h3>Innovation in the Religion</h3>
+          <p class="bangla" lang="bn">দ্বীনের মধ্যে বিদআত</p>
+          <p class="meta"><strong>Aisha, Mother of the Believers</strong>Bukhari 2697 · Muslim 1718</p>
+          <a class="stretch" href="pdf/hadith05.pdf" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"></a>
+          <a class="card-link" href="pdf/hadith05.pdf" target="_blank" rel="noopener noreferrer">Open PDF <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        </article>
+        <article class="resource card">
+          <span class="card-head">
+            <span class="card-number">06 of 42</span>
+            <span class="pdf-tag">PDF</span>
+          </span>
+          <h3>The Lawful &amp; the Unlawful</h3>
+          <p class="bangla" lang="bn">হালাল-হারামের ব্যাপারে সতর্কতা</p>
+          <p class="meta"><strong>Nu&rsquo;man ibn Bashir</strong>Bukhari 52 · Muslim 1599</p>
+          <a class="stretch" href="pdf/hadith06.pdf" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"></a>
+          <a class="card-link" href="pdf/hadith06.pdf" target="_blank" rel="noopener noreferrer">Open PDF <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        </article>
+      </section>
+
+      <div class="section-top video-section" id="videos">
+        <div>
+          <p class="section-label">Recorded classes</p>
+          <h2>Video Lectures</h2>
+        </div>
+        <p class="section-note">Recordings from the 40 Hadith Course 2026. Videos open on YouTube in a new tab.</p>
+      </div>
+
+      <p style="margin:0 0 24px"><a class="button secondary" href="https://www.youtube.com/playlist?list=PLKjLHuyLhGbM" target="_blank" rel="noopener noreferrer">Watch the full playlist <span aria-hidden="true">→</span></a></p>
+
+      <section class="video-grid" aria-label="Video lectures">
+        <a class="video" href="https://youtu.be/iq0rHTP9Zzc" target="_blank" rel="noopener noreferrer">
+          <span class="thumb"><img src="https://i.ytimg.com/vi/iq0rHTP9Zzc/hqdefault.jpg" alt="" loading="lazy" width="480" height="360" /></span>
+          <span class="video-body">
+            <span class="video-kicker">Class 01 <span class="video-date">8 Aug 2026</span></span>
+            <h3>Introduction</h3>
+          </span>
+        </a>
+        <a class="video" href="https://youtu.be/uVguZa2DJh4" target="_blank" rel="noopener noreferrer">
+          <span class="thumb"><img src="https://i.ytimg.com/vi/uVguZa2DJh4/hqdefault.jpg" alt="" loading="lazy" width="480" height="360" /></span>
+          <span class="video-body">
+            <span class="video-kicker">Class 02 <span class="video-date">15 Aug 2026</span></span>
+            <h3>Hadith #1</h3>
+          </span>
+        </a>
+        <a class="video" href="https://youtu.be/LICPaVNDv0k" target="_blank" rel="noopener noreferrer">
+          <span class="thumb"><img src="https://i.ytimg.com/vi/LICPaVNDv0k/hqdefault.jpg" alt="" loading="lazy" width="480" height="360" /></span>
+          <span class="video-body">
+            <span class="video-kicker">Class 03 <span class="video-date">22 Aug 2026</span></span>
+            <h3>Hadith #2</h3>
+          </span>
+        </a>
+        <a class="video" href="https://youtu.be/I9p_6pUGdNs" target="_blank" rel="noopener noreferrer">
+          <span class="thumb"><img src="https://i.ytimg.com/vi/I9p_6pUGdNs/hqdefault.jpg" alt="" loading="lazy" width="480" height="360" /></span>
+          <span class="video-body">
+            <span class="video-kicker">Class 04 <span class="video-date">5 Sep 2026</span></span>
+            <h3>Hadith #2 (continued)</h3>
+          </span>
+        </a>
+        <a class="video" href="https://youtu.be/u_FapXOWq8I" target="_blank" rel="noopener noreferrer">
+          <span class="thumb"><img src="https://i.ytimg.com/vi/u_FapXOWq8I/hqdefault.jpg" alt="" loading="lazy" width="480" height="360" /></span>
+          <span class="video-body">
+            <span class="video-kicker">Class 05 <span class="video-date">12 Sep 2026</span></span>
+            <h3>Hadith #3 &amp; #4</h3>
+          </span>
         </a>
       </section>
 
