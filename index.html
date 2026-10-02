@@ -86,13 +86,27 @@
       .footer-content { display:flex; align-items:center; justify-content:space-between; gap:20px; } footer a { color:#f4d495; } footer a:hover { text-decoration:underline; }
       @media (max-width:850px) { .resource-grid,.hadith-grid,.video-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
       @media (max-width:680px) { .container { width:min(100% - 32px,1120px); } .nav { padding:18px 0; } .hero { padding:57px 0 74px; } main { padding:56px 0 61px; } .section-top { display:block; } .section-note { margin-top:14px; } .resource-grid,.hadith-grid,.video-grid { grid-template-columns:1fr; } .resource { min-height:225px; } .reflection { padding:29px 25px; } .footer-content { align-items:flex-start; flex-direction:column; gap:6px; } }
+      .live-strip { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px 18px; margin:-30px 0 56px; padding:12px 18px; border:1px solid rgba(199,149,72,.55); border-left:4px solid var(--gold); background:var(--sand); font-size:.93rem; }
+      .live-time { color:var(--ink); } .live-time strong { color:var(--evergreen); } .live-time [lang="bn"] { font-family:"Noto Serif Bengali","DM Sans",Arial,sans-serif; color:var(--moss); }
+      .live-link { display:inline-flex; align-items:center; gap:8px; padding:7px 14px; background:var(--gold); color:#173630; font-size:.86rem; font-weight:700; white-space:nowrap; transition:background .2s ease; } .live-link:hover { background:#e0b765; }
+      .course-box { margin:64px 0 0; scroll-margin-top:20px; padding:32px 36px 30px; border:1px solid rgba(199,149,72,.55); border-left:4px solid var(--gold); background:var(--sand); }
+      .course-box h2 { margin-bottom:20px; font-size:clamp(1.45rem,3vw,2rem); text-align:center; }
+      .course-time { display:flex; flex-wrap:wrap; align-items:baseline; justify-content:center; gap:4px 12px; margin:0 0 20px; padding:14px 18px; border:1px solid var(--line); background:#fffdf9; text-align:center; }
+      .course-time .bn { color:var(--evergreen); font-family:"Noto Serif Bengali","DM Sans",Arial,sans-serif; font-size:1.08rem; font-weight:600; }
+      .course-time .en { color:var(--muted); font-size:.9rem; }
+      .course-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin:0 0 24px; }
+      .course-text { max-width:760px; margin:0 auto; color:var(--ink); font-family:"Noto Serif Bengali","DM Sans",Arial,sans-serif; font-size:1rem; line-height:1.85; }
+      .course-text p { margin:0 0 14px; }
+      .course-text .dua { color:var(--moss); }
+      .course-text .amin { margin:0; color:#a7752e; font-weight:600; text-align:center; }
+      @media (max-width:680px) { .live-strip { margin-top:-20px; } .live-link { width:100%; justify-content:center; } .course-box { padding:24px 20px 22px; } .course-actions .button { justify-content:center; width:100%; } }
     </style>
   </head>
   <body>
     <header class="site-header">
       <nav class="container nav" aria-label="Main navigation">
         <a class="brand" href="index.html" aria-label="Forty Hadith home"><span class="brand-mark" lang="ar">٤٠</span> FORTY HADITH</a>
-        <span style="display:flex;gap:22px"><a class="nav-link" href="#resources">Explore</a><a class="nav-link" href="#videos">Videos</a></span>
+        <span style="display:flex;gap:22px"><a class="nav-link" href="#resources">Explore</a><a class="nav-link" href="#videos">Videos</a><a class="nav-link" href="#join">Join live</a></span>
       </nav>
       <section class="container hero">
         <div class="hero-content">
@@ -113,6 +127,11 @@
         </div>
         <div class="ornament" aria-hidden="true">۞</div>
       </aside>
+
+      <div class="live-strip" lang="en">
+        <span class="live-time">🕘 <strong>Live Halaqa:</strong> Every Saturday, 9:00 AM (BST) · <span lang="bn">প্রতি শনিবার সকাল ৯টা</span></span>
+        <a class="live-link" href="https://bdren.zoom.us/j/95410898303" target="_blank" rel="noopener noreferrer">Join on Zoom <span aria-hidden="true">→</span></a>
+      </div>
 
       <div class="section-top">
         <div>
@@ -303,6 +322,21 @@
             <h3>Hadith #7</h3>
           </span>
         </a>
+      </section>
+
+      <section class="course-box" id="join" aria-label="Online course information">
+        <h2>🌿 Forty Hadith of An-Nawawi | Online Course 🌿</h2>
+        <p class="course-time"><span class="bn" lang="bn">🕘 হালাকার সময়: প্রতি শনিবার সকাল ৯টা (বাংলাদেশ সময়)</span><span class="en">Every Saturday at 9:00 AM (Bangladesh Standard Time)</span></p>
+        <div class="course-actions">
+          <a class="button" href="https://bdren.zoom.us/j/95410898303" target="_blank" rel="noopener noreferrer">🔗 Join on Zoom <span aria-hidden="true">→</span></a>
+          <a class="button secondary" href="https://youtu.be/WDJXi0slUz4" target="_blank" rel="noopener noreferrer">🎬 Watch the Teaser <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="course-text" lang="bn">
+          <p>রাসুলুল্লাহ ﷺ-এর হাদিস শুধু জানার জন্য নয়, বরং তা বোঝা, জীবনে ধারণ করা এবং অন্যের কাছে পৌঁছে দেওয়ার মধ্যেই রয়েছে প্রকৃত কল্যাণ।</p>
+          <p>নিজে অংশগ্রহণ করুন এবং পরিবার, বন্ধু ও পরিচিতদের মাঝেও এই সুযোগটি ছড়িয়ে দিন। আপনার একটি শেয়ার হয়তো কারও জন্য হাদিস শেখা ও সে অনুযায়ী জীবন গড়ার সুন্দর সূচনা হয়ে যেতে পারে, ইন শা আল্লাহ।</p>
+          <p class="dua">🤲 আল্লাহ সুবহানাহু ওয়া তা‘আলা এই প্রচেষ্টাকে কবুল করুন, আমাদেরকে উপকারী ইলম দান করুন এবং রাসুলুল্লাহ ﷺ-এর সুন্নাহকে জানা, ভালোবাসা ও অনুসরণ করার তাওফিক দান করুন।</p>
+          <p class="amin">আমীন, ইয়া রব্বাল আলামীন।</p>
+        </div>
       </section>
 
     </main>
